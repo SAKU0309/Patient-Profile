@@ -1,159 +1,174 @@
-📄 Patient Medical Document Portal — README.md
-📌 Project Overview
+# 📄 Patient Medical Document Portal — README.md
 
-This is a full-stack patient document portal where users (patients) can:
+## 📌 Project Overview
 
-Upload PDF medical documents
+This is a full-stack **Patient Medical Document Portal** where users (patients) can:
 
-View all uploaded documents
+- Upload PDF medical documents  
+- View all uploaded documents  
+- Download individual documents  
+- Delete documents when no longer needed  
 
-Download individual documents
+The application includes:
 
-Delete documents when no longer needed
+- **React.js** frontend  
+- **Node.js + Express** backend  
+- **SQLite database**  
+- **Local PDF file storage**  
 
-The application includes a React.js frontend, Node.js + Express backend, SQLite database, and local file storage for PDF files.
-It runs fully locally and is designed as a simple, single-user system.
+It runs completely locally and is designed as a simple **single-user system**.
 
-📁 Folder Structure
-'''
+---
+
+## 📁 Folder Structure
+
 patient-portal/
 │
-├── frontend/        # React.js application (UI)
-│   ├── src/
-│   ├── package.json
-│   └── vite.config.js
+├── frontend/ # React.js application (UI)
+│ ├── src/
+│ ├── package.json
+│ └── vite.config.js
 │
-├── backend/         # Node.js + Express API server
-│   ├── server.js
-│   ├── uploads/     # All PDF files stored here
-│   ├── db.sqlite    # SQLite database file
-│   └── package.json
+├── backend/ # Node.js + Express API server
+│ ├── server.js
+│ ├── uploads/ # All PDF files stored here
+│ ├── db.sqlite # SQLite database file
+│ └── package.json
 │
 └── README.md
-'''
-🛠️ Tech Stack
-Frontend
 
-React.js (Vite)
+---
 
-Axios
+## 🛠️ Tech Stack
 
-Tailwind or basic CSS (optional)
+### **Frontend**
+- React.js (Vite)
+- Axios
+- TailwindCSS or Basic CSS (optional)
 
-Backend
+### **Backend**
+- Node.js + Express.js
+- Multer (file upload handling)
+- SQLite database
+- CORS middleware
 
-Node.js + Express.js
+### **Storage**
+- Local `uploads/` folder for PDFs
 
-Multer (file upload handling)
+---
 
-SQLite (database)
+## 🚀 How to Run Locally (End-to-End)
 
-CORS middleware
-
-Storage
-
-Local uploads/ folder for PDFs
-
-🚀 How to Run Locally (End-to-End)
-1️⃣ Clone the Repository
+### **1️⃣ Clone the Repository**
+```bash
 git clone https://github.com/your-username/patient-portal.git
 cd patient-portal
-
+```
 2️⃣ Setup Backend
+```
 cd backend
 npm install
-
-
-Start the server:
-
 npm start
+```
 
-
-Backend will run at:
+Backend runs at:
+```
 👉 http://localhost:5000
-
+```
 This will automatically create:
-
+```
 uploads/ folder
 
 db.sqlite database
-
+```
 3️⃣ Setup Frontend
 
 In another terminal:
-
+```
 cd frontend
 npm install
 npm run dev
+```
 
-
-Frontend will run at:
+Frontend runs at:
+```
 👉 http://localhost:5173
- (or whichever Vite port)
+```
+(or whichever Vite port)
 
 🎯 How the Application Works
-Upload a PDF
+1. Upload a PDF
 
-User selects a PDF file
+User selects a PDF
 
-React sends it to Express backend via /documents/upload
+React sends it to Express (/documents/upload)
 
 Backend:
+```
+Validates file type
 
-Validates file format
+Saves file to uploads/
 
-Stores file in uploads/ folder
-
-Saves metadata in SQLite (db.sqlite)
+Inserts metadata into SQLite
 
 Frontend refreshes the document list
-
-List Documents
+```
+2. List All Documents
 
 Frontend calls /documents
 
-Backend returns JSON metadata list
+Backend returns all stored PDF metadata
 
-Download File
+3. Download a File
 
-React calls GET /documents/:id
+React calls: GET /documents/:id
 
-Backend streams the PDF file
+Backend streams the PDF for download
 
-Delete File
+4. Delete a File
 
-React calls DELETE /documents/:id
+React calls: DELETE /documents/:id
 
 Backend:
+```
+Removes file from uploads/
 
-Deletes file from uploads/
-
-Removes DB entry
-
+Deletes row from SQLite DB
+```
 🔗 API Specification & Example Calls
 1️⃣ Upload a PDF
-Endpoint
 
+Endpoint
+```
 POST /documents/upload
+```
 
 curl Example
+```
 curl -X POST -F "file=@test.pdf" http://localhost:5000/documents/upload
 
+```
 Response
+```
 {
   "success": true,
   "message": "File uploaded"
 }
-
+```
 2️⃣ List All Documents
-Endpoint
 
+Endpoint
+```
 GET /documents
+```
 
 curl Example
+```
 curl http://localhost:5000/documents
+```
 
 Response
+```
 [
   {
     "id": 1,
@@ -162,51 +177,63 @@ Response
     "created_at": "2025-01-20T12:00:00Z"
   }
 ]
-
+```
 3️⃣ Download a Document
-Endpoint
 
+Endpoint
+```
 GET /documents/:id
+```
 
 curl Example
+```
 curl -O http://localhost:5000/documents/1
-
+```
 4️⃣ Delete a Document
-Endpoint
 
+Endpoint
+```
 DELETE /documents/:id
 
+```
 curl Example
+```
 curl -X DELETE http://localhost:5000/documents/1
+```
 
 Response
+```
 {
   "success": true,
   "message": "File deleted"
 }
-
+```
 📌 Notes & Assumptions
 
 Only PDF files are accepted
 
 Max file size: 10 MB
 
-No authentication; single-user system
+No authentication (single-user system)
 
-SQLite is lightweight and ideal for local use
+SQLite is ideal for local applications
 
-Files are stored locally in backend/uploads/
+Files are stored in backend/uploads/
 
 🏁 Final Output
 
-After starting both frontend & backend:
+Once both frontend & backend are running:
+```
+👉 Visit: http://localhost:5173
+```
+You can now:
 
-Visit: http://localhost:5173
+Upload PDF medical documents
 
-Upload PDF files
+View all uploaded files
 
-See them listed on screen
+Download any file
 
-Download or delete with one click
+Delete files with one click
 
-Fully working patient portal 🎉
+A fully working local patient document management portal 🎉
