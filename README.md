@@ -224,12 +224,12 @@ Once both frontend & backend are running:
 ```
 You can now:
 
-Upload PDF medical documents
+    Upload PDF medical documents
 
-View all uploaded files
+    View all uploaded files
 
-Download any file
+    Download any file
 
-Delete files with one click
+    Delete files with one click
 
 A fully working local patient document management portal 🎉
