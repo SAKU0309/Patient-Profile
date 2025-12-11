@@ -44,13 +44,11 @@ patient-portal/
 ### **Frontend**
 - React.js (Vite)
 - Axios
-- TailwindCSS or Basic CSS (optional)
+- Basic CSS 
 
 ### **Backend**
 - Node.js + Express.js
-- Multer (file upload handling)
 - SQLite database
-- CORS middleware
 
 ### **Storage**
 - Local `uploads/` folder for PDFs
