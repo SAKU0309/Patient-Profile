@@ -21,7 +21,7 @@ It runs completely locally and is designed as a simple **single-user system**.
 ---
 
 ## 📁 Folder Structure
-
+```
 patient-portal/
 │
 ├── frontend/ # React.js application (UI)
@@ -36,7 +36,7 @@ patient-portal/
 │ └── package.json
 │
 └── README.md
-
+```
 ---
 
 ## 🛠️ Tech Stack
@@ -99,9 +99,9 @@ Frontend runs at:
 🎯 How the Application Works
 1. Upload a PDF
 
-User selects a PDF
+    User selects a PDF
 
-React sends it to Express (/documents/upload)
+    React sends it to Express (/documents/upload)
 
 Backend:
 ```
@@ -115,19 +115,19 @@ Frontend refreshes the document list
 ```
 2. List All Documents
 
-Frontend calls /documents
+    Frontend calls /documents
 
-Backend returns all stored PDF metadata
+    Backend returns all stored PDF metadata
 
 3. Download a File
 
-React calls: GET /documents/:id
+    React calls: GET /documents/:id
 
-Backend streams the PDF for download
+    Backend streams the PDF for download
 
 4. Delete a File
 
-React calls: DELETE /documents/:id
+    React calls: DELETE /documents/:id
 
 Backend:
 ```
@@ -210,15 +210,13 @@ Response
 ```
 📌 Notes & Assumptions
 
-Only PDF files are accepted
+  Only PDF files are accepted
 
-Max file size: 10 MB
+  No authentication (single-user system)
 
-No authentication (single-user system)
+  SQLite is ideal for local applications
 
-SQLite is ideal for local applications
-
-Files are stored in backend/uploads/
+  Files are stored in backend/uploads/
 
 🏁 Final Output
 
