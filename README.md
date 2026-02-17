@@ -1,4 +1,4 @@
-# 📄 Patient Medical Document Portal — README.md
+# 📄 Patient Medical Document Portal
 
 ## 📌 Project Overview
 
